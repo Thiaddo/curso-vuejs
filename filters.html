@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtros</title>
+    <!-- Aula 09 - Filtros -->
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+
+    <div id="filters">
+        <h3> {{ name | placeholder('Não foi informado nada, mas...')}} </h3>
+        <h1>Hello {{ name }}</h1>
+        <h1>Hello {{ name | upper }}</h1>
+        <h1>Hello {{ lastName | upper}}</h1>
+        <h1>Hello {{ lastName | lower}}</h1>
+        <h2>O meu salário é: {{ salary | pluralize(['Real','Reais']S)}}</h2>
+            
+        <input type="text" placeholder="Digite seu salário" v-model="salary">
+
+        <h2>{{ msg | truncate(30)}}</h2>
+        
+    </div>
+
+    <script>
+        let app = new Vue({
+
+            el: "#filters",
+            data: {
+                name: 'Hcode Treinamentos',
+                lastName: 'Thiado',
+                salary: 0,
+                msg: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In minima error quaerat labore officia laborum eum quae veniam, laboriosam libero reiciendis, explicabo nisi ut perspiciatis enim autem nobis, distinctio sit.'
+                      
+            },
+            filters: {
+
+                upper: function (value) {
+ 
+                    return value.toUpperCase();
+                },
+
+                lower: function (value) {
+
+                    return value.toLowerCase();
+
+                },
+
+                real: function (value) {
+
+                    return `R$ ${parseInt(value).toFixed(2)}`
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

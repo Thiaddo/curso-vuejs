@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciclo de Vida 2 - Trazendo dados ao Renderizar a Página</title>
+    <!-- Aula 09 - Life Cycle (Ciclo de vida do VUE) -->
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+    <div id="lifecyle">
+        <h1>Hello {{ name }}</h1>
+
+        <ul>
+            <li v-for="state in states"> {{ state.nome }} </li>            
+        </ul>
+
+        <ul>
+            <li v-for="district in districts">{{ district.nome }}</li>
+        </ul>
+
+    
+    </div>
+
+    <script>
+        let app = new Vue({
+
+            el: "#lifecyle",
+            data: {
+                name: 'Hcode Treinamentos',
+                states: [],
+                districts: []
+            },
+
+            beforeCreate() {
+
+                console.log('beforeCreate');
+            },
+            created() {
+
+                console.log('create');
+                fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+                    .then(response => {
+                        response.json().then(data => {
+
+                            this.states = data;
+
+                        })
+
+                    }).catch(err => {
+
+                        console.log(err);
+
+                    })
+
+                    fetch('https://servicodados.ibge.gov.br/api/v1/localidades/distritos')
+                    .then(response =>{
+                        response.json().then(data => {
+
+                            this.districts = data;
+
+                        })
+                    }).catch(err => {
+                        
+                        console.log(err);
+                    })
+            },
+
+            beforeMount() {
+
+                console.log('beforeMounted');
+            },
+            mounted() {
+
+                console.log('mounted');
+            },
+
+            beforeUpdate() {
+
+                console.log('beforeUpdated');
+            },
+            updated() {
+
+                console.log('updated');
+
+            },
+            beforeDestoy() {
+
+                console.log('beforeDestroy');
+
+            },
+            destroyed() {
+                console.log('destroy');
+
+            }
+        })
+    </script>
+</body>
+
+</html>
