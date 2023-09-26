@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diretivas: v-if e v-else</title>
+
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+
+    <div id="directives">
+       
+        <h1 v-show="isLogged">V-SHOW - Seja Bem-vindo à nossa Área Administrativa</h1>
+        <h1 v-if="isLogged">V-IF - Seja Bem-vindo à nossa Área Administrativa</h1>
+        
+    </div>
+
+    <script>
+        let app = new Vue({
+
+            el: "#directives",
+            data: {
+
+                isLogged: true
+                
+            }
+              
+        })
+    </script>
+</body>
+
+</html>
