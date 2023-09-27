@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diretivas: v-model</title>
+    <title>Diretivas: v-on</title>
 
 </head>
 
@@ -14,10 +14,18 @@
     <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
 
     <div id="directives">
-        
-      <p v-on:click = "reverseMessage">{{message}}</p>
-      
-      <h4 v-on:[eventname] = "reverseMessage">{{message}}</h4>
+
+        <p v-on:click="reverseMessage">{{message}}</p>
+
+        <h4 v-on:[eventname]="reverseMessage">{{message}}</h4>
+
+        <hr>
+
+        <input type="text" placeholder="Filtrar pessoas" v-on:keyup="filterPersons">
+
+        <ul>
+            <li v-for="person in personsFilter">{{ person }}</li>
+        </ul>
 
     </div>
 
@@ -27,20 +35,42 @@
             el: "#directives",
 
             data: {
-                
+
                 message: `Vue.js é demais!!!`,
-                eventname: `click`
+                eventname: `click`,
+                persons: ['Anthony Rafael',
+                    'João Rangel',
+                    'Glaucio Daniel',
+                    'Ronaldo Braz',
+                    'Marcus Ribeiro',
+                    'Djalma Sindeaux',
+                    'Thiado Melo'],
+                personsFilter: []
 
             },
 
             methods: {
 
-                reverseMessage(){
+                reverseMessage() {
 
-                    this.message = this.message.split('').reverse().join('')
+                    this.message = this.message.split('').reverse().join('');
+                },
+
+                filterPersons(event) {
+
+                    this.personsFilter = this.persons.filter(name => {
+
+                        return name.toUpperCase().includes(event.target.
+                            value.toUpperCase());
+                    })
+
                 }
+            },
+            created() {
 
+                this.personsFilter = this.persons;
             }
+
         })
     </script>
 </body>
