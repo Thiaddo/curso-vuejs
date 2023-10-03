@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diretivas: v-slot</title>
+
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+
+    <div id="directives">
+
+        
+        <text-component>
+            <template v-slot:header>
+                <h2>
+                    Esse é o cabeçalho do site -  Thiago Melo
+                </h2>
+            </template>
+           
+        </text-component>
+
+        <text-component>
+            <template v-slot:paragrafo>
+                Esse é o paragrafo - Mathias Melo                     
+            </template>
+            
+        </text-component>
+
+        <text-component>Luciana Melo</text-component>
+    </div>
+
+    <script>
+
+        Vue.component('text-component', {
+
+            template: `
+                        <div>
+                            <header>
+                                <slot name="header"></slot>
+                            </header>
+                            <p>
+                                <slot name="paragrafo"></slot>
+                            </p>                         
+                        </div>
+                      `
+        })
+
+        let app = new Vue({
+
+            el: "#directives",
+
+            data: {
+
+            }
+
+        })
+    </script>
+</body>
+
+</html>
