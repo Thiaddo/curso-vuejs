@@ -48,9 +48,9 @@
                 personsFilter: []
 
             },
-
+        
             methods: {
-
+            
                 reverseMessage() {
 
                     this.message = this.message.split('').reverse().join('');
@@ -58,10 +58,8 @@
 
                 filterPersons(event) {
 
-                    this.personsFilter = this.persons.filter(name => {
-
-                        return name.toUpperCase().includes(event.target.
-                            value.toUpperCase());
+                    console.log(event)
+                    this.personsFilter = this.persons.filter(name => {return name.toUpperCase().includes(event.target.value.toUpperCase());
                     })
 
                 }
