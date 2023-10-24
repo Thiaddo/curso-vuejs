@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diretivas: v-directive</title>
+
+
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+
+    <div id="directives">
+
+        <h4 v-upper> {{ name }} </h4>
+
+        <!-- <h2 v-capitalize>hello world {{ name }}</h2> -->
+
+        <!-- <h2 v-custom="'Informação'"> {{ name }} </h2> -->
+
+        <h2 v-custom:[arg]="distance">{{ name }}</h2>
+
+    </div>
+
+    <script>
+
+        Vue.directive('upper', {
+
+            inserted(el) {
+
+                el.innerText = el.innerText.toUpperCase();
+
+            }
+
+        })
+
+        function setDirection(element, binding){
+
+            element.style.margin = 0;
+           
+            let direction = binding.arg.toLowerCase();
+            let value = binding.value;
+
+            switch(direction){
+
+                case 'left':
+                case 'right':
+                case 'bottom':
+                case 'top':
+
+                let newDirection = direction.charAt(0).toUpperCase() + direction.slice(1);
+
+                // console.log(`element.style.margin${newDirection} = value + px`)
+
+                eval(`element.style.margin${newDirection} = value + 'px'`)
+
+            }
+            
+
+        }
+
+        let app = new Vue({
+
+            el: "#directives",
+
+            data: {
+
+                name: 'Hcode',
+                arg: 'left',
+                distance: 150
+
+            },
+
+            directives: {
+               
+                //Funções para diretivas                               
+                custom:{
+
+                    bind(element, binding, vnode){
+
+                        
+                        setDirection(element, binding)
+
+                    },
+
+                    update(element, binding, vnode, oldvnode){
+
+                    setDirection(element, binding)
+                    }
+
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
