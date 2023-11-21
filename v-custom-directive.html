@@ -49,8 +49,9 @@
                 capitalize: function(element) {
 
                     let words = element.innerText.split(' ');
-
+                    
                     words.forEach((text, index) => {
+                        
 
                         words[index] = text.charAt(0).toUpperCase() + text.slice(1);
                         console.log(index + "  " + text)
