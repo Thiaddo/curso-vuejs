@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animações CSS</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+
+        .animation-first-enter-active{
+
+            animation: animation_first 1s;
+
+        }
+
+        .animation-first-leave-active{
+
+            animation: animation_first 1s;
+        }
+
+        @keyframes animation_first {
+            
+            from{
+
+                background: #ffff;
+            }
+
+            to{
+                background: #9999;
+            }
+
+        }
+
+        /*     */
+
+
+        .animation-second-enter-active{
+
+            animation: animation_second 1s;
+
+        }
+        
+        .animation-second-leave-active{
+            
+            animation: animation_second 1s;                   
+        }
+
+        @keyframes animation_second{
+            0%{
+                background: #fff;
+                font-size: 20px;
+            }
+           50%{
+                background: red;
+                font-size: 50px;
+            }           
+            100%{
+                background: #fff;
+                font-size: 20px;
+            }
+        }
+
+    </style>  
+
+
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    
+    <div id="transitions">
+        <transition name="animation-first">
+            <h2 v-if="show">Hcode Treinamentos Animações</h2>
+        </transition>
+        
+        <hr>
+        <transition name="animation-second">
+            <div v-show="show2">
+              Vue.js é demais!!!
+            </div>
+        </transition>
+
+        <button v-on:click="show2 = !show2" >Clique aqui!</button>
+
+    </div>
+
+    <script>
+
+        let app = new Vue({
+
+            el: "#transitions",
+
+            data: { 
+               
+                show: true,
+                show2: true,
+                repeater: 10
+            }            
+        })
+
+    </script>
+</body>
+
+</html>

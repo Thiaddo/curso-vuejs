@@ -18,7 +18,7 @@
 
         <p>Meu nome é {{person.name}} {{ person.lastName }}. Tenho {{person.age}} anos de idade.</p>        
         
-        <span v-html="tag">{{ tag }}</span>
+        <span v-html="tag"></span>
         <!-- {{ tag }} -->        
     </div>
     
@@ -26,16 +26,10 @@
         let App = new Vue({
 
             el: '#data_binding',
-            data: { 
-             message: 'Mensagem para ser exibida',
-              person: {
-               name: 'Thiago',
-               lastName: 'Melo',
-                age: 36
-                },
-
+            data: { message: 'Mensagem para ser exibida', 
+              person: { name: 'Thiago', lastName: 'Melo', age: 36, estadoCivil: 'Casado' },
                 tag: '<button>Click Aqui!</button>',
-                 tagMessage: 'Essa é uma tag de titulo do THIADO'
+                 tagMessage: 'Essa é uma tag de titulo do THIADO'                
             }
         })
     </script>
