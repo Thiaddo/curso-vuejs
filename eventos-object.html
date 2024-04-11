@@ -5,21 +5,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Eventos</title>
+    <title>Eventos - Event Object</title>
 </head>
 
 <body>
     <div id="events">
-
-        <button v-on:click="alert('Hello World!')">Clique aqui</button>
+        <button v-on:click="call($event)">Hcode Clique Aqui</button>
         <hr>
-        <button v-on:dblclick="add">Hcode Treinamentos</button>
-
-        <h4>Você clicou na Hcodes {{ counter }}</h4>
-
+        <a href="https://www.hcode.com.br" v-on:click="call($event)">Site da Hcode</a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
-
     <script>
         let app = new Vue({
             el: "#events",
@@ -27,17 +22,13 @@
             data: {
 
                 counter: 0
-               
             },
 
-            methods:{
-                add() {
+            methods: {
+                call(e) {
 
-                    if(this.counter != 0)
-                    {
-                        console.log(`Thiado ${this.count}`)
-                    }
-                    this.counter+=3;
+                    e.preventDefault();
+                    console.log(e)
 
                 }
             }
